@@ -1,11 +1,55 @@
 # Plataforma de Locação de Painéis Publicitários
 
-Marketplace que conecta proprietários de painéis publicitários a anunciantes e agências: busca geolocalizada,
-negociação, contratação, pagamento e gestão — tudo centralizado.
+Marketplace que conecta **proprietários de painéis publicitários** a **empresas, agências e anunciantes**.
+Na plataforma é possível encontrar painéis no mapa, comparar localizações e preços, negociar, contratar e pagar,
+tudo num só lugar.
 
-> Nome provisório. A marca é definida em `src/config/site.ts` e na configuração `public.platform_name` do banco.
+> Nome provisório ("PainelHub"). Pode ser trocado depois sem reestruturar o sistema.
 
-**Documentação:** [Plano técnico](docs/PLANO.md) · [Decisões pendentes](docs/DECISOES.md) · [Status das fases](docs/FASES.md)
+<p align="center">
+  <img src="docs/img/inicio-desktop.png" alt="Página inicial no computador" width="68%">
+  &nbsp;
+  <img src="docs/img/inicio-mobile.png" alt="Página inicial no celular" width="22%">
+</p>
+
+## O que a plataforma faz
+
+| Para anunciantes | Para proprietários | Para a administração |
+|---|---|---|
+| Buscar painéis por cidade, região e tipo | Cadastrar painéis com fotos, preço e regras | Aprovar painéis antes da publicação |
+| Ver fotos, dimensões, preço e disponibilidade | Receber e negociar solicitações | Acompanhar usuários, reservas e pagamentos |
+| Solicitar locação e negociar valores | Bloquear datas no calendário | Configurar comissões da plataforma |
+| Pagar com Pix ou cartão, com segurança | Acompanhar valores recebidos e a receber | Atender chamados de suporte |
+
+**Garantias do sistema:** um painel nunca pode ser reservado duas vezes para o mesmo período, a reserva só é
+confirmada depois que o pagamento é confirmado pelo intermediador, e a plataforma não guarda dados de cartão.
+
+## Andamento
+
+| Fase | Conteúdo | Situação |
+|---|---|---|
+| 1. Fundação | Banco de dados, cadastro e login, páginas do site, áreas do usuário | ✅ Concluída |
+| 2. Marketplace | Cadastro de painéis, fotos, mapa interativo e filtros | Próxima |
+| 3. Negociação | Solicitações, propostas, calendário | Planejada |
+| 4. Contratação | Contrato, pagamentos (Mercado Pago), confirmação de reservas | Planejada |
+| 5. Administração | Painel administrativo, notificações, relatórios | Planejada |
+| 6. Publicação | Testes finais, segurança e lançamento | Planejada |
+
+Detalhes em [Status das fases](docs/FASES.md). Decisões comerciais em aberto (comissão, repasses, cancelamento):
+[Decisões pendentes](docs/DECISOES.md). Arquitetura, cronograma e custos: [Plano técnico](docs/PLANO.md).
+
+<details>
+<summary><strong>Mais telas</strong></summary>
+
+<p align="center">
+  <img src="docs/img/como-funciona-desktop.png" alt="Página Como funciona" width="80%"><br><br>
+  <img src="docs/img/cadastro-desktop.png" alt="Tela de criação de conta" width="80%">
+</p>
+</details>
+
+---
+
+# Documentação técnica
 
 ## Stack
 
@@ -89,7 +133,7 @@ npm run lint && npm run typecheck
 
 ## Vitrine no GitHub Pages
 
-O workflow `.github/workflows/pages.yml` publica, a cada push na `main`, uma página com capturas reais das telas
+O workflow `.github/workflows/pages.yml` (execução manual) publica uma página com capturas reais das telas
 (desktop e celular), o histórico de mudanças e links para a documentação:
 `https://theuzxl13-oss.github.io/pain-is-publicit-rios/`.
 

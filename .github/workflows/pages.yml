@@ -1,9 +1,9 @@
 name: GitHub Pages
 
-# Publica a vitrine do projeto (capturas de tela + histórico) a cada push na main.
+# Publica a vitrine do projeto (capturas de tela + histórico).
+# Execução manual (Actions → GitHub Pages → Run workflow), pois a hospedagem principal é a Vercel.
+# Requer Settings → Pages → Source: GitHub Actions.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
