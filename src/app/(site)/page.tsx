@@ -133,7 +133,7 @@ export default async function HomePage() {
         title="Painéis disponíveis"
         description="Os anúncios mais recentes aprovados na plataforma."
       >
-        {panels.error ? (
+        {panels.error && panels.error !== "not_configured" ? (
           <Alert
             variant="warning"
             title="Não foi possível carregar os painéis agora"

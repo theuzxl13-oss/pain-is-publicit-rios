@@ -129,7 +129,7 @@ export default async function ExplorePage({ searchParams }: { searchParams: Sear
         </Button>
       </form>
 
-      {result.error ? (
+      {result.error && result.error !== "not_configured" ? (
         <Alert variant="warning" title="Não foi possível carregar os painéis agora">
           Tente novamente em alguns instantes.
         </Alert>

@@ -86,3 +86,15 @@ npm run lint && npm run typecheck
 - Dados de cartão nunca passam pela plataforma (checkout do intermediador).
 - `npm audit` aponta alertas apenas em dependências de desenvolvimento/build (Vitest, PostCSS interno do Next);
   nenhum afeta o código executado em produção. Reavaliar a cada atualização.
+
+## Vitrine no GitHub Pages
+
+O workflow `.github/workflows/pages.yml` publica, a cada push na `main`, uma página com capturas reais das telas
+(desktop e celular), o histórico de mudanças e links para a documentação:
+`https://theuzxl13-oss.github.io/pain-is-publicit-rios/`.
+
+O GitHub Pages hospeda apenas arquivos estáticos, por isso a vitrine mostra capturas e não o app interativo
+(que precisa de servidor e Supabase). Para navegar no app de verdade, use um deploy na Vercel.
+
+Ativação (uma vez): **Settings → Pages → Build and deployment → Source: GitHub Actions**. Para gerar
+manualmente: aba **Actions → GitHub Pages → Run workflow**.
