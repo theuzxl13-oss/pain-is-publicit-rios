@@ -1,0 +1,61 @@
+name: GitHub Pages
+
+# Publica a vitrine do projeto (capturas de tela + histórico).
+# Execução manual (Actions → GitHub Pages → Run workflow), pois a hospedagem principal é a Vercel.
+# Requer Settings → Pages → Source: GitHub Actions.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Inicia o app
+        run: |
+          npm run start -- -p 3000 &
+          npx --yes wait-on@8.0.1 http://localhost:3000/api/health --timeout 60000
+      - name: Captura as telas
+        run: node scripts/pages/capture.mjs
+        env:
+          BASE_URL: http://localhost:3000
+          OUT_DIR: _site/telas
+      - name: Gera a página
+        run: node scripts/pages/build-site.mjs
+        env:
+          OUT_DIR: _site
+          REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
